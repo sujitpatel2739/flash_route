@@ -45,7 +45,7 @@ namespace flashsend
         bool addFile(const std::string &absolutePath);
         bool addFiles(const std::vector<std::string> &absolutePaths);
         void clearFiles();
-        std::int sharedFileCount() const;
+        int sharedFileCount() const;
 
         // Session & Access
         std::string sessionToken() const;
