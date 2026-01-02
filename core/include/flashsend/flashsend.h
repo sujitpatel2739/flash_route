@@ -8,64 +8,77 @@
 
 namespace flashsend
 {
-    enum class ErrorCode
-    {
-        None,
-        AlreadyRunning,
-        NotRunning,
-        InvalidConfig,
-        FileNotFound,
-        FileTooLarge,
-        SessionExpired,
-        InternalError
-    };
 
-    struct Config
-    {
-        int serverPort;            // e.g. 8080
-        uint64_t maxFileSizeBytes; // e.g. 50 * 1024 * 1024
-        int sessionTimeoutSeconds; // e.g. 300
-        int maxConcurrentClients;  // e.g. 10
-        std::string webAssetsPath; // path to /web folder
-        bool enableLogging;
-    };
+// ==========================
+// Error Handling
+// ==========================
 
-    class FlashSend
-    {
-    public:
-        // Lifecycle
-        explicit FlashSend(const Config &config);
-        ~FlashSend();
+enum class ErrorCode
+{
+    None,
+    AlreadyRunning,
+    NotRunning,
+    InvalidConfig,
+    FileNotFound,
+    FileTooLarge,
+    SessionExpired,
+    InternalError
+};
 
-        bool start();
-        void stop();
-        bool isRunning() const;
+// ==========================
+// Core Configuration
+// ==========================
 
-        // File management
-        bool addFile(const std::string &absolutePath);
-        bool addFiles(const std::vector<std::string> &absolutePaths);
-        void clearFiles();
-        int sharedFileCount() const;
+struct Config
+{
+    int     serverPort;            // e.g. 8080
+    uint64_t maxFileSizeBytes;     // e.g. 50 * 1024 * 1024
+    int     sessionTimeoutSeconds; // e.g. 300
+    int     maxConcurrentClients;  // e.g. 10
+    std::string webAssetsPath;     // path to /web folder
+    bool    enableLogging;
+};
 
-        // Session & Access
-        std::string sessionToken() const;
-        std::string serverUrl() const;
-        std::time_t sessionExpiryTime() const;
+// ==========================
+// FlashSend Engine
+// ==========================
 
-        // Error handling
-        ErrorCode lastError() const;
+class FlashSend
+{
+public:
+    // Lifecycle
+    explicit FlashSend(const Config& config);
+    ~FlashSend();
 
-        // Threading contract:
-        // All public methods must be called from the same thread
-        // except isRunning(), lastError(), and sessionExpiryTime()
-        // which are safe for concurrent reads.
+    bool start();
+    void stop();
+    bool isRunning() const;
 
-    private:
-        // Opaque internal pointer (PIMPL pattern)
-        struct Impl;
-        Impl *impl_;
-    };
+    // File management
+    bool addFile(const std::string& absolutePath);
+    bool addFiles(const std::vector<std::string>& absolutePaths);
+    void clearFiles();
+    std::size_t sharedFileCount() const;
 
-}
+    // Session & Access
+    std::string sessionToken() const;
+    std::string serverUrl() const;
+    std::time_t sessionExpiryTime() const;
+
+    // Error handling
+    ErrorCode lastError() const;
+
+    // Threading contract:
+    // All public methods must be called from the same thread
+    // except isRunning(), lastError(), and sessionExpiryTime()
+    // which are safe for concurrent reads.
+
+private:
+    // Opaque internal pointer (PIMPL pattern)
+    struct Impl;
+    Impl* impl_;
+};
+
+} // namespace flashsend
 
 #endif
