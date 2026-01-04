@@ -10,11 +10,11 @@ namespace flashsend
 {
     // TCP server that listens on a port and accepts incoming connections.
     // Does not spawn threads and does not handle protocols.
-    class TcpServer
+    class TCPServer
     {
     public:
         // Creates a server bound to the given port.
-        explicit TcpServer(std::uint16_t port) noexcept;
+        explicit TCPServer(std::uint16_t port) noexcept;
 
         // Starts listening on the port.
         NetError start() noexcept;

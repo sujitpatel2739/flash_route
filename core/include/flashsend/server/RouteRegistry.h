@@ -9,7 +9,6 @@
 
 namespace flashsend
 {
-
     // Stores and resolves HTTP route handlers.
     class RouteRegistry
     {

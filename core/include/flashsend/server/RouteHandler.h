@@ -8,7 +8,6 @@
 
 namespace flashsend
 {
-
     // A RouteHandler processes an HTTP request and returns a response.
     // Handlers must be side-effect free with respect to networking.
     // They must not read from or write to sockets directly.
