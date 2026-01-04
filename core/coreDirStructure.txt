@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 core/
 ├── include/
 │   ├── quicksend/
@@ -37,3 +38,44 @@ core/
 │   └── QuickSend.cpp
 │
 └── CMakeLists.txt
+=======
+core/
+├── include/
+│   ├── quicksend/
+│   │   ├── server/
+│   │   │   ├── HttpServer.h
+│   │   │   ├── RouteRegistry.h
+│   │   │   └── RequestContext.h
+│   │   │
+│   │   ├── session/
+│   │   │   ├── SessionManager.h
+│   │   │   ├── Session.h
+│   │   │   └── Token.h
+│   │   │
+│   │   ├── files/
+│   │   │   ├── FileEntry.h
+│   │   │   ├── FileIndex.h
+│   │   │   └── FileStreamer.h
+│   │   │
+│   │   ├── net/
+│   │   │   ├── Socket.h
+│   │   │   ├── TcpServer.h
+│   │   │   └── HttpParser.h
+│   │   │
+│   │   ├── utils/
+│   │   │   ├── Logger.h
+│   │   │   ├── Time.h
+│   │   │   └── String.h
+│   │   │
+│   │   └── QuickSend.h   # Single public entry point
+│
+├── src/
+│   ├── server/
+│   ├── session/
+│   ├── files/
+│   ├── net/
+│   ├── utils/
+│   └── QuickSend.cpp
+│
+└── CMakeLists.txt
+>>>>>>> f7276a6b74000d82beb236e1de8a6310326eba5b
