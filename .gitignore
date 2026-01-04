@@ -1,0 +1,19 @@
+# Build outputs
+build/
+out/
+bin/
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake-build-*/
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+
+# Logs
+*.log
